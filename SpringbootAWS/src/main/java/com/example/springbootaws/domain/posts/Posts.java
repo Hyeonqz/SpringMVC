@@ -34,4 +34,9 @@ public class Posts {
 		this.author = author;
 	}
 	//생성자 상단에 선언 시 생성자에 포함된 필드만 빌더에 포함
+
+	public void update(String title, String content) {
+		this.title = title;
+		this.content = content;
+	}
 }

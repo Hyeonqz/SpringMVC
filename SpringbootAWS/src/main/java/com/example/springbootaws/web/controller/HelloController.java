@@ -1,10 +1,10 @@
-package com.example.springbootaws;
+package com.example.springbootaws.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.springbootaws.web.HelloResponseDto;
+import com.example.springbootaws.web.dto.HelloResponseDto;
 
 @Controller
 public class HelloController {
