@@ -5,12 +5,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.springbootaws.web.dto.PostsResponseDto;
 import com.example.springbootaws.web.dto.PostsSaveRequestDto;
 
 import lombok.RequiredArgsConstructor;
+
+import com.example.springbootaws.web.dto.PostsUpdateRequestDto;
 import com.example.springbootaws.web.posts.PostsService;
 
 @RequiredArgsConstructor
@@ -25,7 +27,7 @@ public class PostsApiController {
 	}
 
 	@PutMapping("/api/v1/posts/{id}")
-	public Long update(@PathVariable Long id, @Requestbody PostsUpdateRequestDto requestDto) {
+	public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
 		return postsService.update(id, requestDto);
 	}
 

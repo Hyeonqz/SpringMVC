@@ -1,6 +1,8 @@
 package com.example.springbootaws.jpa;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.aspectj.lang.annotation.After;
 import org.junit.jupiter.api.Test;
@@ -11,6 +13,7 @@ import com.example.springbootaws.domain.posts.Posts;
 import com.example.springbootaws.domain.posts.PostsRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.*;
 
 @SpringBootTest
 public class PostsRepositoryTest {
@@ -42,5 +45,29 @@ public class PostsRepositoryTest {
 		Posts posts = postsList.get(0);
 		assertThat(posts.getTitle()).isEqualTo(title);
 		assertThat(posts.getContent()).isEqualTo(content);
+	}
+
+	@Test
+	public void BaseTimeEntit_등록() {
+		//given
+		LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
+		postsRepository.save(Posts.builder()
+			.title("title")
+			.content("content")
+			.author("author")
+			.build());
+
+		//when
+		List<Posts> postsList = postsRepository.findAll();
+
+		//then
+		Posts posts = postsList.get(0);
+
+		System.out.println(">>>>>>>> createDate = " + posts.getCreatedDate()
+			+ ", modifiredDate = " + posts.getModifiedDate());
+
+		assertThat(posts.getCreatedDate()).isAfter(now);
+		assertThat(posts.getModifiedDate()).isAfter(now);
+
 	}
 }

@@ -1,5 +1,7 @@
 package com.example.springbootaws.domain.posts;
 
+import com.example.springbootaws.domain.BaseTimeEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Getter
-public class Posts {
+public class Posts extends BaseTimeEntity {
 //Entity 클래스에는 절대 Setter 메소드를 만들지 않습니다.
 
 	@Id
