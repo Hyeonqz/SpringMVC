@@ -1,7 +1,6 @@
 package hello.servlet.web.frontcontroller.v5;
 
 import java.io.IOException;
-import java.util.logging.Handler;
 
 import hello.servlet.web.frontcontroller.ModelView;
 import jakarta.servlet.ServletException;

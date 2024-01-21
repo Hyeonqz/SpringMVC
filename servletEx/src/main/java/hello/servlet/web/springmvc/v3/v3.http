@@ -1,0 +1,5 @@
+### List확인
+GET localhost:8081/springmvc/v3/members
+
+### memberInsert확인
+GET localhost:8081/springmvc/v3/members/save
