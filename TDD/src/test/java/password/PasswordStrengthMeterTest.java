@@ -41,4 +41,29 @@ public class PasswordStrengthMeterTest {
 	void 테스트데이터_빈값() {
 		assertStrength("",PasswordStrength.INVALID);
 	}
+
+	@Test
+	void 대문자포함안함_나머지는만족() {
+		assertStrength("abcd123@3",PasswordStrength.NORMAL);
+	}
+
+	@Test
+	void 길이8글자이상_나머지불충족() {
+		assertStrength("12312312",PasswordStrength.WEAK);
+	}
+
+	@Test
+	void 숫자포함조건만_만족() {
+		assertStrength("1212", PasswordStrength.WEAK);
+	}
+
+	@Test
+	void 대문자포함조건만_만족() {
+		assertStrength("ABDSD", PasswordStrength.WEAK);
+	}
+
+	@Test
+	void 아무조건도만족안함() {
+		assertStrength("abc",PasswordStrength.WEAK);
+	}
 }
