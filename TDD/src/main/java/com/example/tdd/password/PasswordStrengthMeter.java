@@ -1,4 +1,4 @@
-package password;
+package com.example.tdd.password;
 
 public class PasswordStrengthMeter {
 	public PasswordStrength meter(String s) {
