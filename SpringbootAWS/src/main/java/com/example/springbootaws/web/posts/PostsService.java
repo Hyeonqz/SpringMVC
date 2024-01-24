@@ -29,8 +29,10 @@ public class PostsService {
 		posts.update(requestDto.getTitle(), requestDto.getContent());
 		return id;
 	}
+
 	//JPA핵심 내용은 JPA의 영속성 컨텍스트 때문이다.
 	//영속성 컨텍스트란 -> 엔티티를 저장하는 환경이다.
+
 	public PostsResponseDto findById(Long id) {
 		Posts entity = postsRepository.findById(id)
 			.orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));

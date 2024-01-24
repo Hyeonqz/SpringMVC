@@ -9,10 +9,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class PostsSaveRequestDto {
-	// Request 와 Response 용 클래스
-	// View를 위한 클래스라 자주 변경이 필요한 값 및 객체 저장한다.
-	// Dto 클래스는 view를 위해 존재하는 것이다
-	// 그러므로 DB Layer 와 View Layter를 분리하는 것이 많다.
 	private String title;
 	private String content;
 	private String author;
@@ -23,6 +19,16 @@ public class PostsSaveRequestDto {
 		this.content = content;
 		this.author = author;
 	}
+
+	//dto를 db에 insert시킬 때
+	/*
+	 * PostsSaveRequestDto pr = PostsSaveRequestDto.builder()
+	 * .title(title)
+	 * .content(content)
+	 * .author("authro"
+	 * .build();
+	 *
+	 * */
 
 	public Posts toEntity() {
 		return Posts.builder()

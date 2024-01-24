@@ -6,6 +6,8 @@ import lombok.Getter;
 
 @Getter
 public class PostsResponseDto {
+	//Response는 Entity의 필드 중 일부만 사용한다.
+
 	private Long id;
 	private String title;
 	private String content;
