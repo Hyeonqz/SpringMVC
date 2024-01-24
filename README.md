@@ -9,6 +9,7 @@
 
 ### TDD
 - 테스트 주도 개발 시작하기(Test Driven Development)
+- https://hyeonq.tistory.com/135 (비밀번호 검사 예제)
 
 ### SpringAWS
 - 스프링부트와 AWS로 혼자 구현하는 웹서비스
