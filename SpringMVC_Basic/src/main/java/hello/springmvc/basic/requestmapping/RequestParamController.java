@@ -61,7 +61,7 @@ public class RequestParamController {
 
 	//Map으로 출력하기.
 	@ResponseBody
-	@RequestMapping("/request-param-required")
+	@RequestMapping("/request-param-required12")
 	public String requestParamRequire1(
 		@RequestParam Map<String,Object> paramMap) {
 
