@@ -1,5 +1,6 @@
 package hello.springmvc.basic.requestmapping;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import hello.springmvc.basic.HelloData;
 import lombok.extern.slf4j.Slf4j;
 
-@RestController
+@Controller
 @Slf4j
-public class ModelAttibuteController {
+public class ModelAttributeController {
 
 	@RequestMapping("/model-attribute-v1")
 	public String modelAttributeV1(@RequestParam String username, @RequestParam int age) {
@@ -20,7 +21,6 @@ public class ModelAttibuteController {
 		helloData.setAge(age);
 
 		log.info(helloData.getUsername(),helloData.getAge());
-		log.info(String.valueOf(helloData));
 
 		return "ok";
 	}
