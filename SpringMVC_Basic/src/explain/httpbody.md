@@ -51,3 +51,7 @@ return new ResponseEntity<String>("ok",HttpstatusCode.CREATED)<br>
 1) 응답결과를 http메시지 바디에 직접 담아서 전달한다.
 2) 이 경우에는 view를 사용하지 않는다.
 즉 -> Responsebody는 View를 사용하지 않는다.
+
+
+---
+
