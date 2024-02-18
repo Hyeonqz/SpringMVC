@@ -31,3 +31,10 @@ src/main/resources/templates 경로를 기본적으로 이용한다
 ### http메시지 사용
 html이나 뷰 템플릿을 사용해도 http 응답 메시지 바디에 html데이터가 담겨서 전달된다.<br>
 여기서 설명하는 내용은 정적 리소스나 뷰 템플릿을 거치지 않고, 직접 http 응답 메시지를 전달하는 경우를 말한다.
+
+
+### http 메시지 컨버터
+![img_2.png](img_2.png)
+
+뷰리졸버 대신에 httpMessageConverter가 작동이 된다<br>
+
