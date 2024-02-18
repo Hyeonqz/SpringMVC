@@ -7,7 +7,7 @@
 - 스프링 MVC 1편
 - 배운내용 및 느낀점 적기
 
-- ### item-service
+### item-service
 - 스프링 MVC 1편
 - 실제 개발 해보기
 
