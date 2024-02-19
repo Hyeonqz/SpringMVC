@@ -5,8 +5,7 @@ import hello.itemservice.domain.item.ItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +23,51 @@ public class ItemController {
         return "basic/items";
     }
 
+    @GetMapping("{itemdId}")
+    public String item(Model model, @PathVariable Long itemId) {
+        Item item = repository.findById(itemId);
+        model.addAttribute("item",item);
+        return "basic/item";
+    }
+
+    @GetMapping("/add")
+    public String addForm() {
+        return "basic/addForm";
+    }
+
+ //   @PostMapping("/add")
+    public String save(@RequestParam String itemName,
+                       @RequestParam int price,
+                       @RequestParam Integer quantity,
+                       Model model) {
+
+        Item item = new Item();
+        item.setItemName(itemName);
+        item.setPrice(price);
+        item.setQuantity(quantity);
+
+        repository.save(item);
+
+        model.addAttribute("item",item);
+
+        return "basic/item";
+    }
+
+  //  @PostMapping("/add")
+    public String addItemV1(@ModelAttribute("item") Item item ) {
+        repository.save(item);
+      //  model.addAttribute("item",item); -> ModelAttribute가 위 메소드를 추가해줌. Model도 생성해줌
+        return "basic/item";
+    }
+    //requestParam 각각 하기 귀찮으니 한꺼번에 추가한다.
+    // 요청 파라미터 값 처리 , 모델로 지정한 객체를 자동으로 넣어준다 (Model 추가)
+
+    @PostMapping("/add")
+    public String addItemV2(Item item ) {
+        repository.save(item);
+        return "basic/item";
+    }
+    // @ModelAttribute 자체도 생략이 가능하다. 대상 객체는 모델에 자동 등록이 된다.
 
 
 

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-@Service
 public class ItemRepository {
 
     // 동시에 멀티스레드에서 hashmap접근하면은 안된다
@@ -18,7 +17,7 @@ public class ItemRepository {
     private static long sequence = 0L;
 
     //저장
-    Item save(Item item) {
+    public Item save(Item item) {
         item.setId(++sequence);
         store.put(item.getId(), item);
         return item;
