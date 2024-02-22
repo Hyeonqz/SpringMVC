@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class ItemController {
     }
 
     @GetMapping("{itemdId}")
-    public String item(Model model, @PathVariable Long itemId) {
+    public String item(Model model, @PathVariable("itemId") Long itemId) {
         Item item = repository.findById(itemId);
         model.addAttribute("item",item);
         return "basic/item";
@@ -62,14 +63,41 @@ public class ItemController {
     //requestParam 각각 하기 귀찮으니 한꺼번에 추가한다.
     // 요청 파라미터 값 처리 , 모델로 지정한 객체를 자동으로 넣어준다 (Model 추가)
 
-    @PostMapping("/add")
-    public String addItemV2(Item item ) {
+    //@PostMapping("/add")
+    public String addItemV2 (Item item) {
         repository.save(item);
         return "basic/item";
     }
     // @ModelAttribute 자체도 생략이 가능하다. 대상 객체는 모델에 자동 등록이 된다.
 
+    //@PostMapping("/add")
+    public String addItemV3 (Item item) {
+        repository.save(item);
+        return "redirect:/basic/item" + item.getId();
+    }
 
+    @PostMapping("/add")
+    public String addItemV4 (Item item, RedirectAttributes redirectAttributes) {
+        Item savedItem = repository.save(item);
+        redirectAttributes.addAttribute("itemId", savedItem.getId());
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:/basic/item/{itemId}";
+    }
+
+
+
+    @GetMapping("{itemId}/edit")
+    public String editForm (@PathVariable("itemId") Long itemId, Model model) {
+        Item item = repository.findById(itemId);
+        model.addAttribute("item",item);
+        return "basic/editForm";
+    }
+
+    @PostMapping("{itemId}/edit")
+    public String edit(@PathVariable("itemId") Long itemId, @ModelAttribute Item item) {
+        repository.update(itemId,item);
+        return "redirect:/basic/items/{itemId}";
+    }
 
 
 
