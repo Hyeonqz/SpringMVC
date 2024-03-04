@@ -9,13 +9,6 @@
 
 <hr>
 
-## 테스트 주도 개발 시작하기
-
-#### TDD
-- https://hyeonq.tistory.com/135 (비밀번호 검사 예제)
-
-<hr>
-
 ## 스프링부트와 AWS로 혼자 구현하는 웹서비스
 #### SpringAWS
 
