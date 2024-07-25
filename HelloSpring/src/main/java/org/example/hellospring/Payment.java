@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.springframework.stereotype.Service;
+
 public class Payment {
 	// private 을 사용함으로 써 외부에서 이 필드에 접근을 못하게함. 생성자를 통해서만 접근할 수 있음.
 	private Long orderId;
