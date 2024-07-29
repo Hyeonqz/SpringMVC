@@ -1,8 +1,11 @@
-package org.example.hellospring;
+package org.example.hellospring.try1;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SimpleExRateProvider implements ExRateProvider{
 
 	@Override

@@ -1,4 +1,4 @@
-package org.example.hellospring;
+package org.example.hellospring.try1;
 
 import java.math.BigDecimal;
 import java.util.Map;
