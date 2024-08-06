@@ -10,7 +10,7 @@ Separation of Concerns 관심사 끼리 분리하는 것이다 <br>
 ```java
 public abstract class PaymentService {
 
-	public Payment prepare (Long orderId, String currency, BigDecimal foreignCurrencyAmount) throws IOException {
+	public Payment prepare (Long orderId, String currency, BigDecimal foreignCurrencyAmount) {
 		BigDecimal exRate = getExRate(currency);
 		BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
 		LocalDateTime validUntil = LocalDateTime.now().plusMinutes(30);
@@ -18,14 +18,14 @@ public abstract class PaymentService {
 		return new Payment(orderId, currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil);
 	}
 
-	abstract BigDecimal getExRate (String currency) throws IOException;
+	abstract BigDecimal getExRate (String currency);
 
 }
 
 public class WebApiExRatePaymentService extends PaymentService{
 
 	@Override
-	BigDecimal getExRate (String currency) throws IOException {
+	BigDecimal getExRate (String currency) {
 		URL url = new URL("https://open.er-api.com/v6/latest/" + currency);
 		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
@@ -216,7 +216,7 @@ class PaymentServiceSpringTest {
 
 	@DisplayName("prepare 메소드가 요구사항 3가지를 잘 충족했는지 검증")
 	@Test
-	void prepare () throws IOException {
+	void prepare () {
 		PaymentService paymentService = beanFactory.getBean(PaymentService.class);
 
 		Payment payment = paymentService.prepare(1L, "USD", TEN);
@@ -233,14 +233,18 @@ class PaymentServiceSpringTest {
 테스트 대상의 사용방법을 익히고 동작방식을 확인하는데 유용하다 <br>
 
 
+## 도메인 모델 아키텍쳐 패턴
+도메인 로직, 비즈니스 로직을 어디에 둘 지를 결정하는 패턴
+
+1) 트랜잭션 스크립트 - 서비스 메소드(PaymentService.prepare)
+2) 도메인 모델 - 도메인 모델 오브젝트(Payment)
+   - 위 모델은 테스트를 만들기가 간편하다.
 
 
+### 템플릿 Template
+개방폐쇄원칙: 클래스나 모듈은 확장에는 열려있어야하고 변경에는 닫혀 있어야 한다 <br>
 
-
-
-
-
-
-
+코드 중에서 변경이 거의 일어나지 않으며 일정한 패턴으로 유지되는 특성을 가진 부분을 자유롭게 변경되는 성질을 가진 부분으로서 독립시켜서 효과적으로 활용할 수 있도록 하는 방법 <br>
+자유롭게 변경된다 -> 콜백 <br>
 
 

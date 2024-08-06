@@ -1,8 +1,11 @@
 package org.example.hellospring.try1;
 
 import java.math.BigDecimal;
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import org.springframework.cglib.core.Local;
 
 public class Payment {
 	// private 을 사용함으로 써 외부에서 이 필드에 접근을 못하게함. 생성자를 통해서만 접근할 수 있음.
@@ -21,6 +24,9 @@ public class Payment {
 	* 2) 생성과 동시에 값을 세팅하는게 편하다, 그러므로 생성자를 사용해서 주입을 하는게 좋다.
 	* */
 
+	// 도메인 모델 패턴
+	// 생성자를 이용한다.
+	// 팩토리 메소드를 만든다. -> 토비형님은 위 방식을 지향한다.
 	public Payment (Long orderId, String currency, BigDecimal exRate, BigDecimal foreignCurrencyAmount,
 		BigDecimal convertedAmount, LocalDateTime validUntil) {
 		this.orderId = orderId;
@@ -29,6 +35,16 @@ public class Payment {
 		this.foreignCurrencyAmount = foreignCurrencyAmount;
 		this.convertedAmount = convertedAmount;
 		this.validUntil = validUntil;
+	}
+
+	public static Payment createPrepared(Long orderId, String currency, BigDecimal foreignCurrencyAmount, BigDecimal exRate, LocalDateTime now) {
+		BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
+		LocalDateTime validUntil = now.plusMinutes(30);
+		return new Payment(orderId, currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil);
+	}
+
+	public boolean isValid(Clock clock) {
+		return LocalDateTime.now(clock).isBefore(this.validUntil);
 	}
 
 	@Override

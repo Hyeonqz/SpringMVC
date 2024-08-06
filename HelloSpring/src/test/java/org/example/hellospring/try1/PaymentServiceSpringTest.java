@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.Clock;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,8 +21,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestObjectFactory.class)
 class PaymentServiceSpringTest {
-	@Autowired
-	private BeanFactory beanFactory;
+	@Autowired private BeanFactory beanFactory;
+	@Autowired private Clock clock;
+	@Autowired private ExRateProviderStub exRateProviderStub;
 
 	@BeforeEach
 	public void beforeEach () {
@@ -30,7 +32,7 @@ class PaymentServiceSpringTest {
 
 	@DisplayName("prepare 메소드가 요구사항 3가지를 잘 충족했는지 검증")
 	@Test
-	void prepare () throws IOException {
+	void prepare () {
 		PaymentService paymentService = beanFactory.getBean(PaymentService.class);
 
 		Payment payment = paymentService.prepare(1L, "USD", TEN);

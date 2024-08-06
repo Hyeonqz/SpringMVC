@@ -3,6 +3,9 @@ package org.example.hellospring.try1;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ExRateProviderStub implements ExRateProvider{
 	private BigDecimal exRate;
 
@@ -19,7 +22,7 @@ public class ExRateProviderStub implements ExRateProvider{
 	}
 
 	@Override
-	public BigDecimal getExRate (String currency) throws IOException {
+	public BigDecimal getExRate (String currency) {
 		return exRate;
 	}
 

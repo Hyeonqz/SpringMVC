@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class SimpleExRateProvider implements ExRateProvider{
 
 	@Override
-	public BigDecimal getExRate (String currency) throws IOException {
+	public BigDecimal getExRate (String currency) {
 		if(currency.equalsIgnoreCase("KRW"))
 			return BigDecimal.valueOf(10000);
 
