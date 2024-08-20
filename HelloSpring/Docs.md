@@ -247,4 +247,32 @@ class PaymentServiceSpringTest {
 코드 중에서 변경이 거의 일어나지 않으며 일정한 패턴으로 유지되는 특성을 가진 부분을 자유롭게 변경되는 성질을 가진 부분으로서 독립시켜서 효과적으로 활용할 수 있도록 하는 방법 <br>
 자유롭게 변경된다 -> 콜백 <br>
 
+### 콜백
+콜백은 실행되는 것을 목적으로 다른 오브젝트의 메소드에 전달되는 오브젝트 파라미터로 전달되지만 값을 참조하기 위한 것이 아니라 특정 로직을 담은 메소드를 실행시키는 것이 목적 <br>
 
+하나의 메소드를 가진 인터페이스 타입(SAM) 의 오브젝트 또는 람다 오브젝트 <br>
+
+### 템플릿/콜백 전략 패턴의 특별한 케이스
+템플릿은 전략 패턴의 컨텍스트 <br>
+콜백은 전략패턴의 전략 이다.
+
+-> 파라미터로 객체를 받아온다? 템플릿 메소드 패턴이다 <br>
+
+### 메소드 주입
+의존 오브젝트가 메소드 호출 시점에 파라미터로 전달되는 방식 <br>
+의존관계 주입의 한 종류 <br>
+메소드 호출 주입이라고도 한다 -> DI 랑 비슷한 느낌이다 <br>
+
+### 스프링이 제공하는 템플릿
+1) RestTemplate
+2) JdbcTemplate
+3) JmsTemplate 
+4) HibernateTemplate
+5) TransactionTemplate
+
+등등 여러가지 템플릿으로 끝나는 클래스들이 스프링이 구현되 있습니다 <br>
+
+- RestTemplate
+  - HTTP API 요청을 처리하는 템플릿
+    - HTTP Client 라이브러리 확장 : ClientHttpRequestFactory
+    - MessageBody 를 변환하는 전략 : HttpMessageConverter
