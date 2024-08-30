@@ -2,7 +2,7 @@ package org.example.hellospring.try1;
 
 import java.math.BigDecimal;
 
-import org.example.hellospring.try1.comfig.PaymentConfig;
+import org.example.hellospring.try1.config.PaymentConfig;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

@@ -1,10 +1,9 @@
-package org.example.hellospring.try1.comfig;
+package org.example.hellospring.try1.config;
 
 import java.time.Clock;
 
 import org.example.hellospring.try1.ExRateProvider;
 import org.example.hellospring.try1.PaymentService;
-import org.example.hellospring.try1.WebApiExRateProvider;
 import org.example.hellospring.try1.api.ApiTemplate;
 import org.example.hellospring.try1.api.ErApiExRateExtractor;
 import org.example.hellospring.try1.api.RestTemplateExRateProvider;
